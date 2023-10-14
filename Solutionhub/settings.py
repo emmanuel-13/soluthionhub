@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY="django-insecure-+3=gt3x$6i!upft5a6v4zqh-8$j#5r+rt87ujsdwu=qt8=hnfj"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -165,7 +165,7 @@ SESSION_COOKIE_AGE = 5000
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = env.str("EMAIL_HOST")
+EMAIL_HOST = 'solution@gmail.com'
 
 
 if DEBUG:
