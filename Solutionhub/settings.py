@@ -185,6 +185,12 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Grouppy",
 
     "welcome_sign": "Welcome to My Grouppy",
+    
+    
+    "site_logo": "images/logo.svg",
+
+    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    "login_logo": "images/favicon.ico",
 
     # "site_logo": "asseting/img/rent4less-logo-small.png",
 
