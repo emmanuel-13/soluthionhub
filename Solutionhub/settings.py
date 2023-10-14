@@ -10,8 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from environs import Env
 import os
 from pathlib import Path
+
+
+
+
+env = Env()
+env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+3=gt3x$6i!upft5a6v4zqh-8$j#5r+rt87ujsdwu=qt8=hnfj'
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -157,9 +165,44 @@ SESSION_COOKIE_AGE = 5000
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'solution@gmail.com'
+EMAIL_HOST = env.str("EMAIL_HOST")
 
 
 if DEBUG:
     import mimetypes
     mimetypes.add_type('application/javascript', '.js', True)
+    
+    
+    
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Chat Grouppy",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "My Dashboard",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "Grouppy",
+
+    "welcome_sign": "Welcome to My Grouppy",
+
+    # "site_logo": "asseting/img/rent4less-logo-small.png",
+
+    # Copyright on the footer
+    "copyright": "Designed by emmysoln",
+
+    "changeform_format": "single",
+
+    "icons": {
+        "auth": "fas fa-users-user",
+        "Base.User": "fas fa-user",
+        'Base.Message': "fas fa-info",
+        'Base.Room': "fas fa-home",
+        'Base.Topic': "fas fa-universal-access",
+    },
+
+    "topmenu_links": [
+        {"name": "Home", "url": "home"},
+    ],
+
+}
