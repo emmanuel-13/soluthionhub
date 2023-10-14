@@ -1,0 +1,58 @@
+{% extends "base/main.html" %}
+
+
+{% block content %}
+  <main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      <div class="topics">
+        {% include "components/topic_sidebar.html" %}
+      </div>
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <a href="{{ user.avatar.url }}" style="text-decoration: none;">
+                  <img src="{{ user.avatar.url }}" />
+              </a>
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{% if user.first_name and user.last_name %} {{ user.get_full_name }} {% else %} {{ user.username }} {% endif %}</h3>
+            <p>@{{ user.username }}</p>
+
+            {% if request.user.username == user.username %}
+              <a href="{% url "edit_user" %}" class="btn btn--main btn--pill">Edit Profile</a>
+            {% endif %}
+          </div>
+          <div class="profile__about">
+            {% if request.user.bio %}
+            <h3>About</h3>
+            <p>
+                {{ request.user.bio }}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="roomList__header">
+          <div>
+            <h2>Study Rooms Hosted by {{ request.user.username }}</a>
+            </h2>
+          </div>
+        </div>
+        {% include "components/room_sidebar.html" %}
+      </div>
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+      <div class="activities">
+        {% include "components/recent_activities.html" %}
+      </div>
+      <!-- Activities End -->
+    </div>
+  </main>
+{% endblock content %}
